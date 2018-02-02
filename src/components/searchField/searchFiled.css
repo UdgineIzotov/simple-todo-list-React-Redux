@@ -1,0 +1,14 @@
+.search-input {
+    border-radius: 5px;
+    outline: none ;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.search-btn {
+    position: relative;
+    top: -1.5px;
+    margin-left: -23px;
+    background: inherit;
+    border: none;
+    outline: none;
+}

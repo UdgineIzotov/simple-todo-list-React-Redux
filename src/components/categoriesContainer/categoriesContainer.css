@@ -1,0 +1,13 @@
+.categories-container {
+    width: 50%;
+}
+.categories-list {
+    max-height: 75vh;
+    padding-left: 0;
+    overflow-y: scroll;
+}
+
+.categories-list li {
+    list-style: none;
+}
+

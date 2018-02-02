@@ -1,0 +1,13 @@
+.tasks-container {
+    width: 50%;
+}
+
+.tasks-list {
+    max-height: 75vh;
+    padding-left: 0;
+    overflow-y: scroll;
+}
+
+.tasks-list li {
+    list-style: none;
+}

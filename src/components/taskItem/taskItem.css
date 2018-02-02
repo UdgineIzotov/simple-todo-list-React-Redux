@@ -1,0 +1,29 @@
+.task-item {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: inset 0px 0px 1px 0px black;
+}
+
+.task-item.done {
+    background: #ccc;
+}
+
+.task-item-done {
+    margin: 0 10px;
+}
+
+.task-item-name {
+    display: inline-block;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.task-item-edit {
+    color:black;
+    padding: 10px;
+}
+
