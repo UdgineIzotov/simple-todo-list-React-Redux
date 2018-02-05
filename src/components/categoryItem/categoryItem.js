@@ -4,12 +4,15 @@
 
 import React, {Component} from 'react'
 
+import {connect} from 'react-redux'
+
 import FaEdit from 'react-icons/lib/fa/edit'
 import FaTrash from 'react-icons/lib/fa/trash-o'
 import FaPlus from 'react-icons/lib/fa/plus'
 
 import './categoryItem.css'
 
+@connect()
 class CategoryItem extends Component {
     constructor(props) {
         super(props);
@@ -17,24 +20,43 @@ class CategoryItem extends Component {
     }
 
     onActions(e) {
-        switch (e.target.dataset.id) {
+        console.log(this.props);
+        switch (e.target.closest('button').dataset.id) {
             case 'extend': {
-
-            }
-            case 'edit': {
+                break;
 
             }
             case 'add-subcategory': {
-
+                this.props.dispatch({
+                    type: 'OPEN_MODAL',
+                    modalType: 'ADD_SUB_MODAL',
+                    onModalConfirm: this.props.onAddSubConfirm,
+                    isVisible: true
+                })
+                break;
             }
             case 'edit': {
-
+                this.props.dispatch({
+                    type: 'OPEN_MODAL',
+                    modalType: 'ADD_SUB_MODAL',
+                    onModalConfirm: this.props.onEditConfirm,
+                    isVisible: true
+                })
+                break;
             }
             case 'delete': {
-
+                console.log(this.props)
+                this.props.onDeleteConfirm({
+                    type: 'OPEN_MODAL',
+                    modalType: 'ADD_SUB_MODAL',
+                    onModalConfirm: this.props.onDeleteConfirm,
+                    isVisible: true
+                })
+                break;
             }
             default: {
                 this.props.onSelect(this.props.category.id)
+                break;
             }
         }
     }
@@ -42,12 +64,12 @@ class CategoryItem extends Component {
     render() {
 
         return <div>
-            <div className={"category-item " + (this.props.isSelected && "selected") } onClick={this.onActions}>
+            <div className={"category-item " + (this.props.isSelected && "selected")} onClick={this.onActions}>
                 {
                     this.props.subcategories &&
                     <button className="extend-btn" data-id="extend"></button>
                 }
-                <span   className="category-item-name">{this.props.category.name}</span>
+                <span className="category-item-name">{this.props.category.name}</span>
                 <button className="edit-btn" data-id="edit"><FaEdit/></button>
                 <button className="add-subcategory-btn" data-id="add-subcategory"><FaPlus/></button>
                 <button className="delete-btn" data-id="delete"><FaTrash/></button>

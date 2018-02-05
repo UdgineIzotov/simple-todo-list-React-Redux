@@ -16,6 +16,10 @@ class CategoriesContainer extends Component {
 
         this.addCategory = this.addCategory.bind(this);
         this.selectCategory = this.selectCategory.bind(this);
+
+        this.AddSubConfirm = this.AddSubConfirm.bind(this);
+        this.EditConfirm = this.EditConfirm.bind(this);
+        this.DeleteConfirm = this.DeleteConfirm.bind(this);
     }
 
     addCategory(categoryName) {
@@ -26,6 +30,20 @@ class CategoriesContainer extends Component {
         this.props.dispatch({type: 'CATEGORY_SELECTED', payload: {id: categoryId} })
     }
 
+    AddSubConfirm() {
+        alert('working')
+    }
+
+    EditConfirm() {
+        alert('working')
+
+    }
+
+    DeleteConfirm() {
+        alert('working')
+    }
+
+
     render() {
         
         return <div className="categories-container">
@@ -35,7 +53,11 @@ class CategoriesContainer extends Component {
                     <li key={item.id}>
                         <CategoryItem category={item}
                                       onSelect={this.selectCategory}
-                                      isSelected={item.id === this.props.curCategoryId}/>
+                                      isSelected={item.id === this.props.curCategoryId}
+                                      onAddSubConfirm={this.AddSubConfirm}
+                                      onEditConfirm={this.EditConfirm}
+                                      onDeleteConfirm={this.DeleteConfirm}
+                        />
                     </li>
                 )
                 }

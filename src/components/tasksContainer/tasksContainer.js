@@ -22,7 +22,6 @@ class TasksContainer extends Component {
     }
 
     addTask(taskName) {
-        console.log(this.props);
         if (this.props.curCategoryId !== null) {
             this.props.dispatch({
                 type: 'TASK_ADD',

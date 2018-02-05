@@ -8,6 +8,7 @@ import './main.css'
 import ProgressBar from './../../components/progressBar/progressBar'
 import CategoriesConteainer from './../../components/categoriesContainer/categoriesContainer'
 import TasksConteainer from './../../components/tasksContainer/tasksContainer'
+import ModalContainer from './../../components/modal/modalContainer'
 
 class MainPage extends Component {
     constructor(props) {
@@ -22,7 +23,9 @@ class MainPage extends Component {
             <div className="main-content">
                 <CategoriesConteainer />
                 <TasksConteainer />
+                <ModalContainer />
             </div>
+
         </main>;
     }
 }

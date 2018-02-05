@@ -1,25 +1,35 @@
 /**
  * Created by Evhenii_Izotov on 2/2/2018.
  */
-import { createStore, combineReducers } from 'redux'
+import {createStore, combineReducers} from 'redux'
 
 import categoriesReducer from './categoriesReducer'
-import tasksRedurer from './tasksReducer'
+import tasksReducer from './tasksReducer'
+import modalsReducer from './modalsReducer'
 
 const reducers = combineReducers({
     categories: categoriesReducer,
-    tasks: tasksRedurer
+    tasks: tasksReducer,
+    modal: modalsReducer
 });
 
-const store = createStore(reducers, {
-    categories: {
-        categories: [],
-        curCategoryId: null,
+const store = createStore(
+    reducers,
+    {
+        categories: {
+            categories: [],
+            curCategoryId: null,
+        },
+        tasks: [],
+        modal: {
+            modalType: '',
+            onModalConfirm: null,
+            visibility: false
+        }
     },
-    tasks: []
-});
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-store.subscribe( () => {
+store.subscribe(() => {
     console.log("store changed", store.getState());
 })
 

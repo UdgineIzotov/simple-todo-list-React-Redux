@@ -32,7 +32,6 @@ class TaskItem extends Component {
             <span className="task-item-name">{this.props.task.name}</span>
             <Link className="task-item-edit"
                   to={`/edit/${this.props.task.id}`}> <FaEdit /> </Link>
-
         </div>;
     }   
 }
