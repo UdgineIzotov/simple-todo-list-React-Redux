@@ -27,7 +27,7 @@ class TaskItem extends Component {
         return <div className={`task-item ${(this.props.task.isDone && 'done')}`}>
             <input type="checkbox"
                    className="task-item-done"
-                   defaultValue={this.props.task.isDone}
+                   defaultChecked={this.props.task.isDone}
                    onChange={this.onChBChange}/>
             <span className="task-item-name">{this.props.task.name}</span>
             <Link className="task-item-edit"

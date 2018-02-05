@@ -6,11 +6,15 @@ import {createStore, combineReducers} from 'redux'
 import categoriesReducer from './categoriesReducer'
 import tasksReducer from './tasksReducer'
 import modalsReducer from './modalsReducer'
+import filterReducer from './filterReducer'
+import search from './searchReducer'
 
 const reducers = combineReducers({
     categories: categoriesReducer,
     tasks: tasksReducer,
-    modal: modalsReducer
+    modal: modalsReducer,
+    filter: filterReducer,
+    search
 });
 
 const store = createStore(
@@ -23,9 +27,14 @@ const store = createStore(
         tasks: [],
         modal: {
             modalType: '',
-            onModalConfirm: null,
-            visibility: false
-        }
+            onConfirm: null,
+            visibility: false,
+            options: {}
+        },
+        filter: {
+            isShowDone: false
+        },
+        search: { searchValue: '' }
     },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 

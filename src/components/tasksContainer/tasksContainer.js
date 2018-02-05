@@ -11,7 +11,15 @@ import {connect} from 'react-redux'
 import './taksContainer.css'
 
 @connect(store => {
-    return {tasks: store.tasks, curCategoryId: store.categories.curCategoryId}
+    return {
+        tasks: store.tasks.filter(
+            task => {
+                return  (task.categoryId === store.categories.curCategoryId ) &&
+                        ( (store.filter.isShowDone) ? true : !task.isDone ) &&
+                        ( task.name.match(store.search.searchValue) )
+            }
+        ),
+        curCategoryId: store.categories.curCategoryId}
 })
 class TasksContainer extends Component {
     constructor(props) {
@@ -35,6 +43,7 @@ class TasksContainer extends Component {
     }
 
     render() {
+        console.log('TAAASKI', this.props.tasks);
         return <div className="tasks-container">
             <InputField actionName="Add" action={this.addTask}/>
             <ul className="tasks-list">

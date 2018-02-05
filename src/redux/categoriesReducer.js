@@ -4,7 +4,6 @@
 import Category from '../model/category'
 
 export default (state = {}, actions) => {
-    console.log('action', actions, state);
 
     switch(actions.type) {
         case 'CATEGORY_ADD': {
@@ -20,6 +19,20 @@ export default (state = {}, actions) => {
         case 'CATEGORY_SELECTED': {
 
             return {...state, curCategoryId: actions.payload.id}
+        }
+        case 'CATEGORY_UPDATE' : {
+            console.log('CATEGORY UPDATING')
+            return state;
+        }
+        case 'ADD_SUB_CATEGORY': {
+            console.log('CATEGORY ADD SUB')
+
+            return state;
+        }
+        case 'DELETE_CATEGORY': {
+            console.log('CATEGORY DELETE')
+
+            return state;
         }
         default: return state;
     }

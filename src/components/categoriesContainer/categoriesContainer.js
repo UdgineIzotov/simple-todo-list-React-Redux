@@ -30,17 +30,19 @@ class CategoriesContainer extends Component {
         this.props.dispatch({type: 'CATEGORY_SELECTED', payload: {id: categoryId} })
     }
 
-    AddSubConfirm() {
-        alert('working')
+    AddSubConfirm(options) {
+
+        this.props.dispatch({type: 'CATEGORY_ADD', parentId: options.parentId, name: options.name });
     }
 
-    EditConfirm() {
-        alert('working')
-
+    EditConfirm(options) {
+        console.log(options)
+        alert(`working  ${options.newName}`);
     }
 
-    DeleteConfirm() {
-        alert('working')
+    DeleteConfirm(options) {
+        console.log(options)
+        alert(`working  ${options}`);
     }
 
 

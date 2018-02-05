@@ -6,12 +6,12 @@ export default (state = {}, actions) => {
             return {
                 ...state,
                 modalType: actions.modalType,
-                onModalConfirm: actions.onModalConfirm,
-                visibility: actions.isVisible
+                onConfirm: actions.onConfirm,
+                visibility: true
             }
         }
         case 'CLOSE_MODAL': {
-            return {...state, visibility: actions.isVisible}
+            return {...state, visibility: false}
         }
         default: return state;
     }
