@@ -36,16 +36,16 @@ export const EditModal = ( { modalType, onConfirm, onClose, visibility, options 
 
     const onChange = (e) => { inputValue = e.target.value };
     const confirm = () => {
-        onConfirm({ newName: inputValue, editId: options.id });
+        onConfirm({ newName: inputValue, editId: options.editId });
         onClose();
     };
 
     return <Modal closeIcon="close" open={true}>
         <Modal.Header>
-           Edit Category
+           Edit Category {options.name}
         </Modal.Header>
         <Modal.Content>
-            <Input defaulValue={options.name} onChange={onChange} />
+            <Input onChange={onChange} />
         </Modal.Content>
         <Modal.Actions>
             <Button positive onClick={confirm}>OK</Button>

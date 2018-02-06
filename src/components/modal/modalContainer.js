@@ -5,6 +5,7 @@ import { AddSubModal, EditModal, DeleteModal } from "./modals"
 
 const modalStore = store => store.modal;
 
+
 @connect( (store) => store.modal)
 class ModalContainer extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class ModalContainer extends Component {
         let modal = null;
         console.log(AddSubModal);
         switch (this.props.modalType) {
-            case 'CONFIRM_MODAL': {
+            case 'DELETE_MODAL': {
                 modal = DeleteModal({ ...this.props, onClose: this.onClose });
                 break;
             }

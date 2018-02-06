@@ -21,13 +21,36 @@ export default (state = {}, actions) => {
             return {...state, curCategoryId: actions.payload.id}
         }
         case 'CATEGORY_UPDATE' : {
-            console.log('CATEGORY UPDATING')
-            return state;
+            let indexToUpdate;
+
+            state.categories.some(
+                (category, index) => {
+                   indexToUpdate = index;
+                   return category.id === actions.editId;
+                }
+            )
+
+            const categoryToUpdate = state.categories[indexToUpdate];
+
+            return {
+                ...state,
+                categories: [
+                    ...state.categories.slice(0, indexToUpdate),
+                    new Category(categoryToUpdate.id, actions.newName),
+                    ...state.categories.slice(indexToUpdate + 1),
+                ]
+            };
         }
         case 'ADD_SUB_CATEGORY': {
             console.log('CATEGORY ADD SUB')
 
-            return state;
+            return {
+                ...state,
+             categories: state.categories.concat( new Category(
+                 `${actions.parentId}.${state.categories.length.toString()}`,
+                 actions.name
+             ))
+            };
         }
         case 'DELETE_CATEGORY': {
             console.log('CATEGORY DELETE')

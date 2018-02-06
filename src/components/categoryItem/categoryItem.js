@@ -43,7 +43,6 @@ class CategoryItem extends Component {
 
     onDelete(e) {
         e.stopPropagation();
-
         this.props.dispatch({
             type: 'OPEN_MODAL',
             modalType: 'DELETE_MODAL',

@@ -3,11 +3,11 @@
  */
 import {createStore, combineReducers} from 'redux'
 
-import categoriesReducer from './categoriesReducer'
-import tasksReducer from './tasksReducer'
-import modalsReducer from './modalsReducer'
-import filterReducer from './filterReducer'
-import search from './searchReducer'
+import categoriesReducer from './redux/categoriesReducer'
+import tasksReducer from './redux/tasksReducer'
+import modalsReducer from './redux/modalsReducer'
+import filterReducer from './redux/filterReducer'
+import search from './redux/searchReducer'
 
 const reducers = combineReducers({
     categories: categoriesReducer,

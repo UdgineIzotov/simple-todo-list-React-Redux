@@ -1,13 +1,12 @@
 export default (state = {}, actions) => {
-    console.log('modals work', actions);
     switch(actions.type) {
         case 'OPEN_MODAL': {
-
             return {
                 ...state,
                 modalType: actions.modalType,
                 onConfirm: actions.onConfirm,
-                visibility: true
+                visibility: true,
+                options: {...actions.options}
             }
         }
         case 'CLOSE_MODAL': {

@@ -9,7 +9,13 @@ import CategoryItem from './../categoryItem/categoryItem'
 import './categoriesContainer.css';
 import { connect } from 'react-redux'
 
-@connect( (store) => store.categories)
+@connect(
+    store => ({
+        curCategoryId: store.categories.curCategoryId,
+        categories: store.categories.categories
+            .filter( category => category.id.indexOf('.') === -1 )
+    })
+)
 class CategoriesContainer extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +29,7 @@ class CategoriesContainer extends Component {
     }
 
     addCategory(categoryName) {
-     this.props.dispatch({type: 'CATEGORY_ADD', payload: { categoryName }})
+     this.props.dispatch({type: 'CATEGORY_ADD', categoryName})
     }
 
     selectCategory(categoryId) {
@@ -31,13 +37,12 @@ class CategoriesContainer extends Component {
     }
 
     AddSubConfirm(options) {
-
-        this.props.dispatch({type: 'CATEGORY_ADD', parentId: options.parentId, name: options.name });
+        console.log('WORKINGGNGdsgfraeo')
+        this.props.dispatch({type: 'ADD_SUB_CATEGORY', parentId: options.parentId, name: options.name });
     }
 
     EditConfirm(options) {
-        console.log(options)
-        alert(`working  ${options.newName}`);
+        this.props.dispatch({type: 'CATEGORY_UPDATE', ...options})
     }
 
     DeleteConfirm(options) {
@@ -45,9 +50,7 @@ class CategoriesContainer extends Component {
         alert(`working  ${options}`);
     }
 
-
     render() {
-        
         return <div className="categories-container">
             <InputField actionName="Add" action={this.addCategory}/>
             <ul className="categories-list">

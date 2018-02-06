@@ -3,11 +3,19 @@
  */
 import React, {Component} from 'react'
 
+import { filterTasks } from '../../actions'
+
 import './filterTasks.css';
 
 import { connect } from 'react-redux'
 
-@connect( store => store.filter)
+const mapStateToProps = store => store.filter;
+
+const mapDispatchToProps = dispatch => ({
+    onFilterTasks: filter => dispatch(filterTasks(filter))
+})
+
+@connect( mapStateToProps, mapDispatchToProps )
 class FilterTasks extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +24,7 @@ class FilterTasks extends Component {
     }
 
     onChange(e) {
-        this.props.dispatch({ type:'FILTER_CHANGE', filter: e.target.checked })
+        this.props.onFilterTasks(e.target.checked)
     }
 
 
