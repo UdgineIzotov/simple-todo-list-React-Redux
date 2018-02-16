@@ -3,15 +3,12 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { AddSubModal, EditModal, DeleteModal } from "./modals"
 
-const modalStore = store => store.modal;
+const mapStateToProps = store => store.modal;
 
-
-@connect( (store) => store.modal)
 class ModalContainer extends Component {
     constructor(props) {
         super(props);
 
-        console.log('modal container',this.props)
         this.onClose = this.onClose.bind(this);
     }
 
@@ -20,9 +17,7 @@ class ModalContainer extends Component {
     }
 
     render() {
-        console.log('modal container',this.props)
         let modal = null;
-        console.log(AddSubModal);
         switch (this.props.modalType) {
             case 'DELETE_MODAL': {
                 modal = DeleteModal({ ...this.props, onClose: this.onClose });
@@ -43,4 +38,4 @@ class ModalContainer extends Component {
     }
 }
 
-export default connect(modalStore)(ModalContainer)
+export default connect(mapStateToProps)(ModalContainer)

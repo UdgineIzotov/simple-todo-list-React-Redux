@@ -3,15 +3,14 @@
  */
 import React, {Component} from 'react'
 
-import InputField from './../inputField/inputField'
-import TaskItem from './../taskItem/taskItem'
+import InputField from './../inputField'
+import TaskItem from './../taskItem'
 
 import {connect} from 'react-redux'
 
 import './taksContainer.css'
 
-@connect(store => {
-    return {
+const mapStatetoProps = store => ({
         tasks: store.tasks.filter(
             task => {
                 return  (task.categoryId === store.categories.curCategoryId ) &&
@@ -19,8 +18,8 @@ import './taksContainer.css'
                         ( task.name.match(store.search.searchValue) )
             }
         ),
-        curCategoryId: store.categories.curCategoryId}
-})
+        curCategoryId: store.categories.curCategoryId
+    })
 class TasksContainer extends Component {
     constructor(props) {
         super(props);
@@ -39,11 +38,10 @@ class TasksContainer extends Component {
     }
 
     updateTask(task) {
-        this.props.dispatch({type: 'TASK_UPDATE', payload: {task}})
+        this.props.dispatch({type: 'TASK_UPDATE', task})
     }
 
     render() {
-        console.log('TAAASKI', this.props.tasks);
         return <div className="tasks-container">
             <InputField actionName="Add" action={this.addTask}/>
             <ul className="tasks-list">
@@ -61,4 +59,4 @@ class TasksContainer extends Component {
     }
 }
 
-export default TasksContainer
+export default connect(mapStatetoProps)(TasksContainer)

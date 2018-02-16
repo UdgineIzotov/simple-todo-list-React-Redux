@@ -1,14 +1,14 @@
 /**
  * Created by Evhenii_Izotov on 2/1/2018.
  */
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 
-import FaSearch from 'react-icons/lib/fa/search'
+import FaSearch from 'react-icons/lib/fa/search';
 
 import './searchFiled.css';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-@connect( store => store.searchValue)
+const mapStateToProps = store => ({searchValue: store.searchValue});
 class SearchField extends Component {
     constructor(props) {
         super(props);
@@ -36,4 +36,4 @@ class SearchField extends Component {
     }
 }
 
-export default SearchField
+export default connect(mapStateToProps)(SearchField)

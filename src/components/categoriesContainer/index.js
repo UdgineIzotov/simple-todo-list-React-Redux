@@ -3,19 +3,17 @@
 */
 
 import React, {Component} from 'react'
-import InputField from './../inputField/inputField'
-import CategoryItem from './../categoryItem/categoryItem'
+import InputField from './../inputField'
+import CategoryItem from './../categoryItem'
 
 import './categoriesContainer.css';
 import { connect } from 'react-redux'
 
-@connect(
-    store => ({
-        curCategoryId: store.categories.curCategoryId,
-        categories: store.categories.categories
-            .filter( category => category.id.indexOf('.') === -1 )
-    })
-)
+const mapStateToProps = store => ({
+    curCategoryId: store.categories.curCategoryId,
+    categories: store.categories.categories            
+})
+
 class CategoriesContainer extends Component {
     constructor(props) {
         super(props);
@@ -71,4 +69,4 @@ class CategoriesContainer extends Component {
     }   
 }
 
-export default CategoriesContainer
+export default connect(mapStateToProps)(CategoriesContainer)

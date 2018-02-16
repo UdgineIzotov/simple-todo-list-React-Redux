@@ -15,7 +15,6 @@ const mapDispatchToProps = dispatch => ({
     onFilterTasks: filter => dispatch(filterTasks(filter))
 })
 
-@connect( mapStateToProps, mapDispatchToProps )
 class FilterTasks extends Component {
     constructor(props) {
         super(props);
@@ -37,4 +36,4 @@ class FilterTasks extends Component {
     }   
 }
 
-export default FilterTasks;
+export default connect( mapStateToProps, mapDispatchToProps )(FilterTasks);

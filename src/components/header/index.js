@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
-import FilterTask from './../filterTasks/filterTasks'
-import SearchField from './../searchField/searchField'
+import FilterTask from './../filterTasks'
+import SearchField from './../searchField'
 
 import './header.css';
 

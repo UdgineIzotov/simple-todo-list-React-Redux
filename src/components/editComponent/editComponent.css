@@ -1,0 +1,28 @@
+.edit-component {
+    padding: 0 20px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.actions {
+    align-self: flex-end;
+}
+
+.task-name {
+    margin-top: 30px;
+}
+
+.done-chbx {
+    margin-top: 30px;
+}
+.description {
+    margin-top: 30px;
+    width: 100%;
+    height: 300px;
+    resize: none;
+}
+
+

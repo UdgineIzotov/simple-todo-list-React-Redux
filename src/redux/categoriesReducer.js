@@ -12,7 +12,7 @@ export default (state = {}, actions) => {
                 categories: state.categories.concat(
                     new Category(
                         state.categories.length.toString(),
-                        actions.payload.categoryName)
+                        actions.categoryName)
                 )
             }
         }
@@ -42,21 +42,51 @@ export default (state = {}, actions) => {
             };
         }
         case 'ADD_SUB_CATEGORY': {
-            console.log('CATEGORY ADD SUB')
+            const categories = JSON.parse( JSON.stringify(state.categories));
+
+            const path = getTreePath(categories, actions.parentId);
+
+            path[ path.length - 1 ].subCategories.push(
+                new Category(
+                    `${actions.parentId}.${path[ path.length - 1 ].subCategories.length.toString()}`,
+                    actions.name
+                )
+            );
+
+            console.log(path[ path.length - 1 ]);
+            console.log(path[ path.length - 1 ].subCategories);
+
 
             return {
                 ...state,
-             categories: state.categories.concat( new Category(
-                 `${actions.parentId}.${state.categories.length.toString()}`,
-                 actions.name
-             ))
+             categories
             };
         }
         case 'DELETE_CATEGORY': {
             console.log('CATEGORY DELETE')
+            console.log(actions)
+            const categories = JSON.parse( JSON.stringify(state.categories));
+            
 
             return state;
         }
         default: return state;
     }
 }
+
+const getTreePath = (categories, id) => {
+
+    const ids = id.split('.').map( item => parseInt(item, 10));
+
+    let nextNode = categories[ ids.shift() ];
+
+    let path = [].concat( nextNode );
+
+    ids.forEach( id =>  {
+        nextNode = nextNode.subCategories[id];
+        path.push(nextNode);
+    } )
+
+    return path;
+}
+

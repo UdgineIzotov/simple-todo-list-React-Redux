@@ -7,8 +7,6 @@
 const path = require('path');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: './public/index.html',
