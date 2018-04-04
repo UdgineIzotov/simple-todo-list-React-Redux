@@ -21,24 +21,20 @@ export default (state = {}, actions) => {
             return {...state, curCategoryId: actions.payload.id}
         }
         case 'CATEGORY_UPDATE' : {
-            let indexToUpdate;
+            console.log(actions)
+            const categories = JSON.parse( JSON.stringify(state.categories));
 
-            state.categories.some(
-                (category, index) => {
-                   indexToUpdate = index;
-                   return category.id === actions.editId;
-                }
-            )
+            const path = getTreePath(categories, actions.editId);
 
-            const categoryToUpdate = state.categories[indexToUpdate];
+            console.log(path[path.length - 1])            
 
+            path[path.length - 1].name = actions.newName; 
+            
+            console.log(path[path.length - 1])
+            
             return {
                 ...state,
-                categories: [
-                    ...state.categories.slice(0, indexToUpdate),
-                    new Category(categoryToUpdate.id, actions.newName),
-                    ...state.categories.slice(indexToUpdate + 1),
-                ]
+                categories
             };
         }
         case 'ADD_SUB_CATEGORY': {
@@ -52,23 +48,35 @@ export default (state = {}, actions) => {
                     actions.name
                 )
             );
-
-            console.log(path[ path.length - 1 ]);
-            console.log(path[ path.length - 1 ].subCategories);
-
-
             return {
                 ...state,
-             categories
+                categories
             };
         }
         case 'DELETE_CATEGORY': {
-            console.log('CATEGORY DELETE')
-            console.log(actions)
             const categories = JSON.parse( JSON.stringify(state.categories));
-            
 
-            return state;
+            const path = getTreePath(categories, actions.deleteId);
+
+            if (path.length === 1) {
+                categories.splice( categories.indexOf( path[path.length-1] ) );
+
+                return {
+                    ...state,
+                    categories
+                };
+            }
+
+            path[path.length - 2].subCategories.splice(
+                path[path.length - 2].subCategories.indexOf(
+                    path[path.length - 1]
+                )
+            );           
+
+            return {
+                ...state,
+                categories
+            };
         }
         default: return state;
     }

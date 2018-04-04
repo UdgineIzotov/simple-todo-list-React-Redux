@@ -11,28 +11,31 @@ class CategoryForEditing extends Component {
     constructor(props) {
         super(props);
         
-        this.onMoveTask = this.onMoveTask.bind(this);
+        this.MoveTask = this.MoveTask.bind(this);
     }
     
-    onMoveTask() {
-        
+    MoveTask() {
+        this.props.onMoveTask(this.props.category.id);
     }
     
     render() {
-        console.log(this.props);
+        console.log(this.props.taskCategoryId === this.props.category.id);
         return <div>
                 <div className="category-item">
                     <span className="category-item-name">{this.props.category.name}</span>
                     <button
                         className="move-btn"
-                        onClick={this.onMoveTask}
-                        disabled={this.props.isDisabled}><ArrowBack/></button>
+                        onClick={this.MoveTask}
+                        disabled={this.props.taskCategoryId === this.props.category.id}>
+                            <ArrowBack/>
+                        </button>
                 </div>
                 <div className="category-children">
                     {this.props.category.subCategories.map( category => (
-                        <CategoryForEditing category={category}
+                        <CategoryForEditing key={category.id}
+                                            category={category}
                                             onMoveTask={this.props.onMoveTask}
-                                            isDisabled={category.id === this.props.taskCategoryId}/>
+                                            taskCategoryId = {this.props.taskCategoryId}/>
                         )
                     )}
                 </div>

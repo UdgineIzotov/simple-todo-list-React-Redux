@@ -14,9 +14,11 @@ import './categoryItem.css';
 
 import {openModal} from '../../actions';
 
+const mapStateToProps = (store) => ({ curCategoryId: store.categories.curCategoryId })
+
 const mapDispatchToProps = dispatch => ({
     onOpenModal: (modalType, onConfirm, options) => dispatch(openModal(modalType, onConfirm, options))
-})
+});
 
 class CategoryItem extends Component {
     constructor(props) {
@@ -26,9 +28,7 @@ class CategoryItem extends Component {
         this.onDelete           = this.onDelete.bind(this);
         this.onAddSubCategory   = this.onAddSubCategory.bind(this);
         this.onSelect           = this.onSelect.bind(this);
-
     }
-
 
     onEdit(e) {
         e.stopPropagation();
@@ -42,25 +42,23 @@ class CategoryItem extends Component {
 
     onDelete(e) {
         e.stopPropagation();
-        this.props.onOpenModal('DELETE_MODAL', this.props.onDeleteConfirm, { id: this.props.category.id } );
+        this.props.onOpenModal('DELETE_MODAL', this.props.onDeleteConfirm, { deleteId: this.props.category.id } );
     }
 
     onAddSubCategory(e) {
         e.stopPropagation();
-
         this.props.onOpenModal( 'ADD_SUB_MODAL', this.props.onAddSubConfirm, { parentId: this.props.category.id} );
     }
 
     onSelect(e) {
         e.stopPropagation();
-
         this.props.onSelect(this.props.category.id);
     }
 
     render() {
-
+        console.log(this.props);
         return <div>
-            <div className={"category-item " + (this.props.isSelected && "selected")} onClick={this.onSelect}>
+            <div className={"category-item " + ( (this.props.category.id === this.props.curCategoryId ) && "selected")} onClick={this.onSelect}>
                 {
                     this.props.subcategories &&
                     <button className="extend-btn" data-id="extend"></button>
@@ -76,7 +74,6 @@ class CategoryItem extends Component {
                     <ConnectedCategoryItem key={index} 
                                 category={item}
                                 onSelect={this.props.onSelect}
-                                isSelected={item.id === this.props.curCategoryId}
                                 onAddSubConfirm={this.props.onAddSubConfirm}
                                 onEditConfirm={this.props.onEditConfirm}
                                 onDeleteConfirm={this.props.onDeleteConfirm}
@@ -89,6 +86,6 @@ class CategoryItem extends Component {
     }
 }
 
-const ConnectedCategoryItem = connect(null, mapDispatchToProps)(CategoryItem);
+const ConnectedCategoryItem = connect(mapStateToProps, mapDispatchToProps)(CategoryItem);
 
 export default ConnectedCategoryItem;

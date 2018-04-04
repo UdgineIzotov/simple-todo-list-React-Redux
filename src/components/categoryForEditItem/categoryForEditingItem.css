@@ -6,6 +6,10 @@
     text-align: left;
 }
 
+.move-btn {
+    float: right;
+}
+
 .category-children {
     margin-left: 20px;
 }

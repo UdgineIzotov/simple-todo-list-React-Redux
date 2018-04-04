@@ -15,6 +15,14 @@ export default (state={}, actions) => {
 
             return tasks;
         }
+        case 'CHANGE_TASK_CATEGORY': {
+            const tasks =  [...state];
+            console.log(actions);
+
+            tasks[actions.payload.taskId].categoryId = actions.payload.moveToId;
+
+            return tasks;
+        }
         default: return state;
     }
 }

@@ -45,7 +45,7 @@ class EditPage extends Component {
                 <div className="main-content">
                     <CategoriesForEditingConteainer
                         categories={this.props.categories}
-                        taskCategoryId={this.props.task.categoryId}
+                        taskId = {this.props.task.id}
                     />
                     <EditComponent
                         task={this.props.task}

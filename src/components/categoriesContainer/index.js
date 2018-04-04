@@ -10,7 +10,6 @@ import './categoriesContainer.css';
 import { connect } from 'react-redux'
 
 const mapStateToProps = store => ({
-    curCategoryId: store.categories.curCategoryId,
     categories: store.categories.categories            
 })
 
@@ -35,7 +34,6 @@ class CategoriesContainer extends Component {
     }
 
     AddSubConfirm(options) {
-        console.log('WORKINGGNGdsgfraeo')
         this.props.dispatch({type: 'ADD_SUB_CATEGORY', parentId: options.parentId, name: options.name });
     }
 
@@ -44,11 +42,12 @@ class CategoriesContainer extends Component {
     }
 
     DeleteConfirm(options) {
-        console.log(options)
-        alert(`working  ${options}`);
+        console.log(options);
+        this.props.dispatch({type: 'DELETE_CATEGORY', ...options})
     }
 
     render() {
+        console.log(this.props.curCategoryId);
         return <div className="categories-container">
             <InputField actionName="Add" action={this.addCategory}/>
             <ul className="categories-list">
@@ -56,7 +55,6 @@ class CategoriesContainer extends Component {
                     <li key={item.id}>
                         <CategoryItem category={item}
                                       onSelect={this.selectCategory}
-                                      isSelected={item.id === this.props.curCategoryId}
                                       onAddSubConfirm={this.AddSubConfirm}
                                       onEditConfirm={this.EditConfirm}
                                       onDeleteConfirm={this.DeleteConfirm}

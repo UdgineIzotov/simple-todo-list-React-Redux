@@ -2,8 +2,13 @@
  * Created by Evhenii_Izotov on 2/1/2018.
  */
 import React, {Component} from 'react'
-
+import { connect } from 'react-redux'
 import './progressBar.css'
+
+const mapStateToProps = (store => ({
+
+    })
+);
 
 class ProgressBar extends Component {
     constructor(props) {
@@ -19,4 +24,4 @@ class ProgressBar extends Component {
     }
 }
 
-export default ProgressBar
+export default connect()(ProgressBar);
