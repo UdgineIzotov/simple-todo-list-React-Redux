@@ -18,7 +18,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve('dist'),
-        filename: 'index_bundle.js'
+        filename: 'main.js'
     },
     module: {
         loaders: [
