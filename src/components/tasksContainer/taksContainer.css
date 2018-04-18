@@ -11,3 +11,12 @@
 .tasks-list li {
     list-style: none;
 }
+
+@media only screen and (max-width: 478px) {
+    .tasks-container {
+        width: 100%;
+    }
+    .tasks-list {
+        max-height: 30vh;
+    }
+}

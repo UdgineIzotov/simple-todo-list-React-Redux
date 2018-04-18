@@ -11,7 +11,6 @@ import { getRoutes } from './services/Router'
 
 import App from './App'
 
-
 import {Provider} from 'react-redux'
 import Store from './store'
 

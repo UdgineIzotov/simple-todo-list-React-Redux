@@ -11,3 +11,11 @@
     list-style: none;
 }
 
+@media only screen and (max-width: 478px) {
+    .categories-container {
+        width: 100%;
+    }
+    .categories-list {
+        max-height: 30vh;
+    }
+}

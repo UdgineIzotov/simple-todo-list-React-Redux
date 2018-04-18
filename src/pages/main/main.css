@@ -9,3 +9,9 @@ main {
     justify-content: center;
     align-items: flex-start;
 }
+
+@media only screen and (max-width: 478px) {
+    .main-content {
+        flex-direction: column;
+    }
+}

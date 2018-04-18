@@ -30,7 +30,8 @@ class EditComponent extends Component {
         console.log(this.name)
     }
 
-    onDoneChange(e) { this.isDone = e.target.checked;
+    onDoneChange(e) { 
+        this.isDone = e.target.checked;
         console.log(this.isDone)
     }
 
@@ -49,16 +50,11 @@ class EditComponent extends Component {
 
     render() {
         return <div className="edit-component">
-            <div className="actions">
-                <button className="save" onClick={this.saveChanges}>Save changes</button>
-                <button className="cansel" onClick={this.props.onCansel}>Cansel</button>
-            </div>
             <input type="text"
                    className="task-name"
                    defaultValue={this.name}
                    onChange={this.onNameChange}
             />
-
             <label htmlFor="isDone" className="done-chbx">
                 <input type="checkbox" id="isDone" defaultChecked={this.isDone} onChange={this.onDoneChange}/>
                 Done</label>
@@ -68,6 +64,10 @@ class EditComponent extends Component {
                 defaultValue={this.description}
                 onChange={this.onDescriptionChanged}
             />
+            <div className="actions">
+                <button className="save" onClick={this.saveChanges}>Save changes</button>
+                <button className="cansel" onClick={this.props.onCansel}>Cansel</button>
+            </div>
         </div>;
     }
 }
